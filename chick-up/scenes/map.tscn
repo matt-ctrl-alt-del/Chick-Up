@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d1p7o1t6vd4x6"]
+
+[ext_resource type="Texture2D" uid="uid://ie1ss2jgqqfh" path="res://sprites/map/parallax/layer4.png" id="1_2klcf"]
+[ext_resource type="Texture2D" uid="uid://dl40joya6ebo3" path="res://sprites/map/parallax/layer0.png" id="2_2lpho"]
+[ext_resource type="Texture2D" uid="uid://q7snbw12d0tg" path="res://sprites/map/parallax/layer2.png" id="3_nakos"]
+[ext_resource type="Texture2D" uid="uid://crshq8y2at6nd" path="res://sprites/map/parallax/layer3.png" id="4_jh32y"]
+[ext_resource type="Texture2D" uid="uid://b6q7ic40f5k5y" path="res://sprites/map/parallax/parallax_bg.png" id="5_be0no"]
+
+[node name="Map" type="Node2D" unique_id=775522422]
+
+[node name="Sky" type="Parallax2D" parent="." unique_id=2042455736]
+repeat_size = Vector2(1152, 648)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=1858591742]
+z_index = 5
+texture = ExtResource("1_2klcf")
+
+[node name="HillBack" type="Parallax2D" parent="." unique_id=1952726869]
+repeat_size = Vector2(1152, 648)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HillBack" unique_id=666300776]
+z_index = 1
+texture = ExtResource("2_2lpho")
+
+[node name="HillFront" type="Parallax2D" parent="." unique_id=30713119]
+repeat_size = Vector2(1152, 648)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HillFront" unique_id=293121462]
+z_index = 2
+texture = ExtResource("3_nakos")
+
+[node name="Plains" type="Parallax2D" parent="." unique_id=1215967937]
+repeat_size = Vector2(1152, 648)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Plains" unique_id=1239733842]
+z_index = 5
+texture = ExtResource("4_jh32y")
+
+[node name="Background" type="Parallax2D" parent="." unique_id=2119905317]
+repeat_size = Vector2(1152, 648)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1994526736]
+texture = ExtResource("5_be0no")

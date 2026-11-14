@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b35drbucgfmss" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://bo2nigfbbl1wr" path="res://resources/Font/Grape Squishy.otf" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://bjfhy1fyemskh" path="res://scenes/fade_transition.tscn" id="3_bqqt6"]
-[ext_resource type="AudioStream" uid="uid://ba6gowmch4y7v" path="res://chisper-8-bit-menu-select-634748.mp3" id="4_wu84c"]
+[ext_resource type="AudioStream" uid="uid://ba6gowmch4y7v" path="res://resources/audio/chisper-8-bit-menu-select-634748.mp3" id="4_wu84c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pqpv"]
 
