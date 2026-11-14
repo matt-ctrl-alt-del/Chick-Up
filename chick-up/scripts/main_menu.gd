@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_play_pressed() -> void:
+	$AudioStreamPlayer2D.playing = true
 	$CanvasLayer/Fade_transition.show()
 	$CanvasLayer/Fade_transition/Animation.play("fade_in")
 	await $CanvasLayer/Fade_transition/Animation.animation_finished
