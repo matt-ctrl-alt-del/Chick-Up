@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b3oje2h35hacr"]
+
+[ext_resource type="Script" uid="uid://biyo6xar2wtel" path="res://scripts/loading_screen.gd" id="1_ku3bi"]
+[ext_resource type="FontFile" uid="uid://bo2nigfbbl1wr" path="res://resources/Font/Grape Squishy.otf" id="2_hprjd"]
+[ext_resource type="PackedScene" uid="uid://bjfhy1fyemskh" path="res://scenes/fade_transition.tscn" id="3_ku3bi"]
+
+[node name="loading_screen" type="Control" unique_id=352434981]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ku3bi")
+next_scene = "uid://bsf0jc44j2cng"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1798204558]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1915617132]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hprjd")
+theme_override_font_sizes/font_size = 50
+text = "Loading..."
+
+[node name="Control" type="Control" parent="." unique_id=137942774]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=338677053]
+z_index = -4
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898274889]
+
+[node name="Fade_transition" parent="CanvasLayer" unique_id=47245366 instance=ExtResource("3_ku3bi")]
+z_index = 1

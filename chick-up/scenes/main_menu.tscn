@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://6784i0mfc2t3"]
+
+[ext_resource type="Script" uid="uid://b35drbucgfmss" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://bo2nigfbbl1wr" path="res://resources/Font/Grape Squishy.otf" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://bjfhy1fyemskh" path="res://scenes/fade_transition.tscn" id="3_bqqt6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pqpv"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_bqqt6"]
+content_margin_left = 5.0
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5rfmp"]
+content_margin_left = 10.0
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ekxnf"]
+content_margin_left = 5.0
+vertical = true
+
+[node name="main_menu" type="Control" unique_id=2039779790]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2044817142]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -67.0
+offset_right = 127.0
+offset_bottom = 67.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=1507755048]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6pqpv")
+theme_override_styles/pressed = SubResource("StyleBoxLine_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxLine_5rfmp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxLine_ekxnf")
+text = "Play"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=582871397]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6pqpv")
+theme_override_styles/pressed = SubResource("StyleBoxLine_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxLine_5rfmp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxLine_ekxnf")
+text = "Exit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2130995323]
+
+[node name="Fade_transition" parent="CanvasLayer" unique_id=47245366 instance=ExtResource("3_bqqt6")]
+mouse_filter = 2
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
