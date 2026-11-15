@@ -99,7 +99,118 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_662ny"]
-size = Vector2(24, 786.5)
+size = Vector2(24, 813.5)
+
+[sub_resource type="Gradient" id="Gradient_vtaks"]
+offsets = PackedFloat32Array(0.8852459, 0.9672131)
+colors = PackedColorArray(0.9882353, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hui80"]
+gradient = SubResource("Gradient_vtaks")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_005ff"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(13, 1, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.0728835e-05
+angle_max = 90.000015
+gravity = Vector3(0, -100, 0)
+color_ramp = SubResource("GradientTexture1D_hui80")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
+size = Vector2(24, 75.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhx41"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnb83"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sww3w"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suyxu"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_005ff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtaks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1j6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl11u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhx41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnb83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sww3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suyxu")
+}],
+"loop": 2,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_005ff"]
+size = Vector2(26, 792)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvpfn"]
+size = Vector2(26, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinhu"]
+size = Vector2(26, 75)
 
 [node name="Game" type="Node2D" unique_id=303594556]
 script = ExtResource("1_lbhrr")
@@ -146,8 +257,14 @@ sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D" unique_id=679977438]
-position = Vector2(1, -384.25)
+position = Vector2(0, -399)
 shape = SubResource("RectangleShape2D_662ny")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D" unique_id=290515332]
+amount = 500
+lifetime = 15.129999999999999
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
 
 [node name="WindArea2D2" parent="Fans" unique_id=1877555203 instance=ExtResource("9_vtaks")]
 z_index = 1000
@@ -160,12 +277,12 @@ sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D2" unique_id=760367590]
-position = Vector2(0.5, -384.5)
+position = Vector2(1, -398.25)
 shape = SubResource("RectangleShape2D_662ny")
 
 [node name="WindArea2D3" parent="Fans" unique_id=1610865791 instance=ExtResource("9_vtaks")]
 z_index = 1000
-position = Vector2(719, 600)
+position = Vector2(736, 600)
 collision_layer = 2
 collision_mask = 2
 
@@ -174,8 +291,71 @@ sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D3" unique_id=207644957]
-position = Vector2(0.5, -384.5)
-shape = SubResource("RectangleShape2D_662ny")
+position = Vector2(1, -31.25)
+shape = SubResource("RectangleShape2D_vtaks")
+
+[node name="WindArea2D4" parent="Fans" unique_id=479132302 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(1032, 600)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D4" unique_id=1607133691]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D4" unique_id=961903430]
+position = Vector2(0, -388)
+shape = SubResource("RectangleShape2D_005ff")
+
+[node name="WindArea2D5" parent="Fans" unique_id=1146836097 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(1223, 600)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D5" unique_id=863219169]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D5" unique_id=400736720]
+position = Vector2(0, -388)
+shape = SubResource("RectangleShape2D_005ff")
+
+[node name="WindArea2D6" parent="Fans" unique_id=1654248112 instance=ExtResource("9_vtaks")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D6" unique_id=37975221]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D6" unique_id=1678126134]
+position = Vector2(0, -388)
+shape = SubResource("RectangleShape2D_005ff")
+
+[node name="WindArea2D7" parent="Fans" unique_id=761579158 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(697, 520)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D7" unique_id=674493020]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D7" unique_id=384759997]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_kvpfn")
+
+[node name="WindArea2D8" parent="Fans" unique_id=1680898918 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(769, 441)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D8" unique_id=182894436]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D8" unique_id=443549771]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
 
 [node name="Killzone" type="Node2D" parent="." unique_id=642644895]
 
