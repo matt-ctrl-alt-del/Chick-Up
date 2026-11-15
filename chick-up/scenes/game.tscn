@@ -133,55 +133,59 @@ value = 100.0
 texture_under = ExtResource("5_u5sy4")
 texture_progress = ExtResource("6_gee14")
 
-[node name="killzone" parent="." unique_id=207262966 instance=ExtResource("5_iywne")]
-position = Vector2(570, 635)
+[node name="Fans" type="Node2D" parent="." unique_id=263646309]
 
-[node name="Boundary_Killzone" parent="." unique_id=1526410593 instance=ExtResource("8_gee14")]
-position = Vector2(-163, 751)
-collision_layer = 2
-collision_mask = 2
-
-[node name="WindArea2D" parent="." unique_id=1159794905 instance=ExtResource("9_vtaks")]
+[node name="WindArea2D" parent="Fans" unique_id=1159794905 instance=ExtResource("9_vtaks")]
 z_index = 1000
 position = Vector2(174, 600)
 collision_layer = 2
 collision_mask = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D" unique_id=999945848]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D" unique_id=999945848]
 sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D" unique_id=679977438]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D" unique_id=679977438]
 position = Vector2(1, -384.25)
 shape = SubResource("RectangleShape2D_662ny")
 
-[node name="WindArea2D2" parent="." unique_id=1877555203 instance=ExtResource("9_vtaks")]
+[node name="WindArea2D2" parent="Fans" unique_id=1877555203 instance=ExtResource("9_vtaks")]
 z_index = 1000
 position = Vector2(387, 600)
 collision_layer = 2
 collision_mask = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D2" unique_id=1473581155]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D2" unique_id=1473581155]
 sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D2" unique_id=760367590]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D2" unique_id=760367590]
 position = Vector2(0.5, -384.5)
 shape = SubResource("RectangleShape2D_662ny")
 
-[node name="WindArea2D3" parent="." unique_id=1610865791 instance=ExtResource("9_vtaks")]
+[node name="WindArea2D3" parent="Fans" unique_id=1610865791 instance=ExtResource("9_vtaks")]
 z_index = 1000
 position = Vector2(719, 600)
 collision_layer = 2
 collision_mask = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D3" unique_id=1603576728]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D3" unique_id=1603576728]
 sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D3" unique_id=207644957]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D3" unique_id=207644957]
 position = Vector2(0.5, -384.5)
 shape = SubResource("RectangleShape2D_662ny")
 
-[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
-[connection signal="body_entered" from="Boundary_Killzone" to="." method="_on_boundary_killzone_body_entered"]
+[node name="Killzone" type="Node2D" parent="." unique_id=642644895]
+
+[node name="killzone" parent="Killzone" unique_id=207262966 instance=ExtResource("5_iywne")]
+position = Vector2(570, 635)
+
+[node name="Boundary_Killzone" parent="Killzone" unique_id=1526410593 instance=ExtResource("8_gee14")]
+position = Vector2(-163, 751)
+collision_layer = 2
+collision_mask = 2
+
+[connection signal="body_entered" from="Killzone/killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="Killzone/Boundary_Killzone" to="." method="_on_boundary_killzone_body_entered"]
