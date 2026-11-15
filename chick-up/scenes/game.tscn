@@ -4,6 +4,102 @@
 [ext_resource type="PackedScene" uid="uid://d1p7o1t6vd4x6" path="res://scenes/map.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bocu6fl6psn4t" path="res://scenes/player.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bjfhy1fyemskh" path="res://scenes/fade_transition.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://ulkhwwsx501h" path="res://scenes/killzone.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://b5kyd5ec7t4eq" path="res://sprites/ui/progressbarbg.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://hkw6kq35nvtv" path="res://sprites/ui/progressbar_red.png" id="6_gee14"]
+[ext_resource type="PackedScene" uid="uid://bqss1efspeb43" path="res://scenes/boundary_killzone.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://d3souh54hwkqq" path="res://scenes/wind_area_2d.tscn" id="9_vtaks"]
+[ext_resource type="Texture2D" uid="uid://p1vvmowc7xga" path="res://sprites/fan.png" id="10_kvpfn"]
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+offsets = PackedFloat32Array(0.11445783, 0.5903614)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_662ny"]
+gradient = SubResource("Gradient_lbhrr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("10_kvpfn")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_662ny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir15t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca42v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rysoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}],
+"loop": 2,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_662ny"]
+size = Vector2(24, 786.5)
 
 [node name="Game" type="Node2D" unique_id=303594556]
 script = ExtResource("1_lbhrr")
@@ -11,9 +107,81 @@ script = ExtResource("1_lbhrr")
 [node name="Map" parent="." unique_id=775522422 instance=ExtResource("1_yqjtg")]
 
 [node name="player" parent="." unique_id=1310114056 instance=ExtResource("2_lnu2h")]
-z_index = 50
-position = Vector2(72, 579)
+z_index = 49
+position = Vector2(86, 579)
+scale = Vector2(0.7, 0.7)
+
+[node name="PointLight2D" type="PointLight2D" parent="player" unique_id=2076476153]
+color = Color(0.94297975, 0.9730801, 0.8882805, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_662ny")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1419570336]
 
 [node name="Fade_transition" parent="CanvasLayer" unique_id=47245366 instance=ExtResource("4_iywne")]
+visible = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=468192576]
+offset_right = 172.0
+offset_bottom = 42.0
+scale = Vector2(1.5, 1.5)
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+value = 100.0
+texture_under = ExtResource("5_u5sy4")
+texture_progress = ExtResource("6_gee14")
+
+[node name="killzone" parent="." unique_id=207262966 instance=ExtResource("5_iywne")]
+position = Vector2(570, 635)
+
+[node name="Boundary_Killzone" parent="." unique_id=1526410593 instance=ExtResource("8_gee14")]
+position = Vector2(-163, 751)
+collision_layer = 2
+collision_mask = 2
+
+[node name="WindArea2D" parent="." unique_id=1159794905 instance=ExtResource("9_vtaks")]
+z_index = 1000
+position = Vector2(174, 600)
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D" unique_id=999945848]
+sprite_frames = SubResource("SpriteFrames_662ny")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D" unique_id=679977438]
+position = Vector2(1, -384.25)
+shape = SubResource("RectangleShape2D_662ny")
+
+[node name="WindArea2D2" parent="." unique_id=1877555203 instance=ExtResource("9_vtaks")]
+z_index = 1000
+position = Vector2(387, 600)
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D2" unique_id=1473581155]
+sprite_frames = SubResource("SpriteFrames_662ny")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D2" unique_id=760367590]
+position = Vector2(0.5, -384.5)
+shape = SubResource("RectangleShape2D_662ny")
+
+[node name="WindArea2D3" parent="." unique_id=1610865791 instance=ExtResource("9_vtaks")]
+z_index = 1000
+position = Vector2(719, 600)
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WindArea2D3" unique_id=1603576728]
+sprite_frames = SubResource("SpriteFrames_662ny")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea2D3" unique_id=207644957]
+position = Vector2(0.5, -384.5)
+shape = SubResource("RectangleShape2D_662ny")
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="Boundary_Killzone" to="." method="_on_boundary_killzone_body_entered"]

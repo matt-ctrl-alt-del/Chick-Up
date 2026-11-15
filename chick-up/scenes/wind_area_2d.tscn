@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d3souh54hwkqq"]
+
+[ext_resource type="Script" uid="uid://bi4w20wy4lg80" path="res://scripts/wind_area_2d.gd" id="1_dkhr5"]
+
+[node name="WindArea2D" type="Area2D" unique_id=1159794905]
+script = ExtResource("1_dkhr5")
+speed = Vector2(0, -100)

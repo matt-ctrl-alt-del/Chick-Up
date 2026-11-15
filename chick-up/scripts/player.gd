@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+const GRAVITY_NORMAL: float = 14.5
+var wind_velocity: Vector2 = Vector2.ZERO
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -16,4 +19,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	velocity.y += GRAVITY_NORMAL if wind_velocity.y == 0.0 else 0.0
+	velocity += wind_velocity * 0.4
 	move_and_slide()
