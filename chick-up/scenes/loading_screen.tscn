@@ -30,6 +30,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1915617132]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6562438, 0.27343094, 0.02551931, 1)
 theme_override_fonts/font = ExtResource("2_hprjd")
 theme_override_font_sizes/font_size = 50
 text = "Loading..."
@@ -55,7 +56,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898274889]
 

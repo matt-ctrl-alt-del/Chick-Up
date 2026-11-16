@@ -151,6 +151,7 @@ grow_vertical = 2
 script = ExtResource("1_hsxvm")
 
 [node name="Matt_not_found splash" type="AnimatedSprite2D" parent="." unique_id=1558238974]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ekwvu")
 animation = &"matt_not_found"
 

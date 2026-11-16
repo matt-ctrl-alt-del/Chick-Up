@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bqss1efspeb43" path="res://scenes/boundary_killzone.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://d3souh54hwkqq" path="res://scenes/wind_area_2d.tscn" id="9_vtaks"]
 [ext_resource type="Texture2D" uid="uid://p1vvmowc7xga" path="res://sprites/fan.png" id="10_kvpfn"]
+[ext_resource type="Script" uid="uid://7de2o3r26nhq" path="res://scenes/ball.gd" id="11_dinhu"]
+[ext_resource type="Texture2D" uid="uid://dnew85xmb5a4v" path="res://sprites/items/ball.png" id="12_dinhu"]
+[ext_resource type="FontFile" uid="uid://bo2nigfbbl1wr" path="res://resources/Font/Grape Squishy.otf" id="13_kvuet"]
 
 [sub_resource type="Gradient" id="Gradient_lbhrr"]
 offsets = PackedFloat32Array(0.11445783, 0.5903614)
@@ -212,6 +215,17 @@ size = Vector2(26, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dinhu"]
 size = Vector2(26, 75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvuet"]
+size = Vector2(26, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trtic"]
+size = Vector2(478, 458)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_662ny"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_005ff"]
+radius = 11.0
+
 [node name="Game" type="Node2D" unique_id=303594556]
 script = ExtResource("1_lbhrr")
 
@@ -219,8 +233,10 @@ script = ExtResource("1_lbhrr")
 
 [node name="player" parent="." unique_id=1310114056 instance=ExtResource("2_lnu2h")]
 z_index = 49
-position = Vector2(86, 579)
+position = Vector2(65.00012, 561)
 scale = Vector2(0.7, 0.7)
+collision_layer = 7
+collision_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="player" unique_id=2076476153]
 color = Color(0.94297975, 0.9730801, 0.8882805, 1)
@@ -262,23 +278,29 @@ shape = SubResource("RectangleShape2D_662ny")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D" unique_id=290515332]
 amount = 500
-lifetime = 15.129999999999999
+lifetime = 15.13
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_005ff")
 
-[node name="WindArea2D2" parent="Fans" unique_id=1877555203 instance=ExtResource("9_vtaks")]
+[node name="WindArea2D4" parent="Fans" unique_id=26728859 instance=ExtResource("9_vtaks")]
 z_index = 1000
-position = Vector2(387, 600)
+position = Vector2(354, 599)
 collision_layer = 2
 collision_mask = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D2" unique_id=1473581155]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D4" unique_id=605152347]
 sprite_frames = SubResource("SpriteFrames_662ny")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D2" unique_id=760367590]
-position = Vector2(1, -398.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D4" unique_id=1770759788]
+position = Vector2(0, -399)
 shape = SubResource("RectangleShape2D_662ny")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D4" unique_id=1429293873]
+amount = 500
+lifetime = 15.13
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
 
 [node name="WindArea2D3" parent="Fans" unique_id=1610865791 instance=ExtResource("9_vtaks")]
 z_index = 1000
@@ -294,22 +316,15 @@ autoplay = "default"
 position = Vector2(1, -31.25)
 shape = SubResource("RectangleShape2D_vtaks")
 
-[node name="WindArea2D4" parent="Fans" unique_id=479132302 instance=ExtResource("9_vtaks")]
-z_index = 100
-position = Vector2(1032, 600)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D4" unique_id=1607133691]
-sprite_frames = SubResource("SpriteFrames_005ff")
-autoplay = "default"
-frame_progress = 0.6816729
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D4" unique_id=961903430]
-position = Vector2(0, -388)
-shape = SubResource("RectangleShape2D_005ff")
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D3" unique_id=1347880162]
+amount = 50
+lifetime = 1.21
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
 
 [node name="WindArea2D5" parent="Fans" unique_id=1146836097 instance=ExtResource("9_vtaks")]
 z_index = 100
-position = Vector2(1223, 600)
+position = Vector2(1438, 600)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D5" unique_id=863219169]
 sprite_frames = SubResource("SpriteFrames_005ff")
@@ -320,16 +335,17 @@ frame_progress = 0.6816729
 position = Vector2(0, -388)
 shape = SubResource("RectangleShape2D_005ff")
 
-[node name="WindArea2D6" parent="Fans" unique_id=1654248112 instance=ExtResource("9_vtaks")]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D5" unique_id=1141283499]
+amount = 500
+lifetime = 15.13
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D6" unique_id=37975221]
-sprite_frames = SubResource("SpriteFrames_005ff")
-autoplay = "default"
-frame_progress = 0.6816729
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D6" unique_id=1678126134]
-position = Vector2(0, -388)
-shape = SubResource("RectangleShape2D_005ff")
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D5/GPUParticles2D" unique_id=969343466]
+amount = 500
+lifetime = 15.13
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
 
 [node name="WindArea2D7" parent="Fans" unique_id=761579158 instance=ExtResource("9_vtaks")]
 z_index = 100
@@ -344,6 +360,12 @@ frame_progress = 0.6816729
 position = Vector2(0, -29.5)
 shape = SubResource("RectangleShape2D_kvpfn")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D7" unique_id=1253980759]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
 [node name="WindArea2D8" parent="Fans" unique_id=1680898918 instance=ExtResource("9_vtaks")]
 z_index = 100
 position = Vector2(769, 441)
@@ -357,15 +379,473 @@ frame_progress = 0.6816729
 position = Vector2(0, -29.5)
 shape = SubResource("RectangleShape2D_dinhu")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D8" unique_id=1603801548]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D2" parent="Fans" unique_id=1515948957 instance=ExtResource("9_vtaks")]
+z_index = 19
+position = Vector2(317, 521)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D2" unique_id=1981686097]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D2" unique_id=1870593877]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D2" unique_id=473095791]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D9" parent="Fans" unique_id=1973756069 instance=ExtResource("9_vtaks")]
+z_index = 19
+position = Vector2(367, 440)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D9" unique_id=309386928]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D9" unique_id=769903297]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D9" unique_id=450464577]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D10" parent="Fans" unique_id=801143166 instance=ExtResource("9_vtaks")]
+z_index = 19
+position = Vector2(400, 360)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D10" unique_id=1173921847]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D10" unique_id=793019557]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D10" unique_id=515177634]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D11" parent="Fans" unique_id=858675183 instance=ExtResource("9_vtaks")]
+z_index = 19
+position = Vector2(354, 296)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D11" unique_id=1390906147]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D11" unique_id=2087352171]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_kvuet")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D11" unique_id=572651030]
+amount = 50
+lifetime = 1.54
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D12" parent="Fans" unique_id=1408965099 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(852, 538)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D12" unique_id=1681602647]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D12" unique_id=1817478717]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D12" unique_id=706967716]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D13" parent="Fans" unique_id=839721816 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(897, 470)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D13" unique_id=1390038437]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D13" unique_id=1520456823]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D13" unique_id=1284284166]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D14" parent="Fans" unique_id=1517234991 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(1077, 471)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D14" unique_id=954199994]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D14" unique_id=673872519]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D14" unique_id=1434052107]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D15" parent="Fans" unique_id=2079415541 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(1037, 361)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D15" unique_id=1430726481]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D15" unique_id=1587212332]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D15" unique_id=1984738650]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D16" parent="Fans" unique_id=1675767718 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(848, 264)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D16" unique_id=1863210820]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D16" unique_id=1899576572]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D16" unique_id=263171910]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D17" parent="Fans" unique_id=1716020139 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(888, 200)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D17" unique_id=1628084793]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D17" unique_id=338358045]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D17" unique_id=1177743158]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
+[node name="WindArea2D18" parent="Fans" unique_id=1010636409 instance=ExtResource("9_vtaks")]
+z_index = 100
+position = Vector2(1105, 168)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fans/WindArea2D18" unique_id=1082169713]
+sprite_frames = SubResource("SpriteFrames_005ff")
+autoplay = "default"
+frame_progress = 0.6816729
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fans/WindArea2D18" unique_id=805783880]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_dinhu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fans/WindArea2D18" unique_id=485343452]
+amount = 50
+lifetime = 1.24
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_005ff")
+
 [node name="Killzone" type="Node2D" parent="." unique_id=642644895]
 
 [node name="killzone" parent="Killzone" unique_id=207262966 instance=ExtResource("5_iywne")]
 position = Vector2(570, 635)
+
+[node name="killzone2" parent="Killzone" unique_id=936914198 instance=ExtResource("5_iywne")]
+position = Vector2(985, 627)
 
 [node name="Boundary_Killzone" parent="Killzone" unique_id=1526410593 instance=ExtResource("8_gee14")]
 position = Vector2(-163, 751)
 collision_layer = 2
 collision_mask = 2
 
+[node name="EndKillzone" type="Area2D" parent="Killzone" unique_id=1771121979]
+position = Vector2(1383, -179)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone/EndKillzone" unique_id=548375987]
+position = Vector2(56, 176)
+shape = SubResource("RectangleShape2D_trtic")
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=1630425767]
+z_index = 100
+position = Vector2(133, 501)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=2043100150]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=238353544]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball" unique_id=859287208]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D" unique_id=2135398340]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball4" type="CharacterBody2D" parent="." unique_id=315385712]
+z_index = 100
+position = Vector2(-27, 64)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball4" unique_id=2139057835]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball4" unique_id=1000315314]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball4" unique_id=1039013687]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball4/Area2D" unique_id=2023956752]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball5" type="CharacterBody2D" parent="." unique_id=342255976]
+z_index = 100
+position = Vector2(995, 427)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball5" unique_id=944090804]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball5" unique_id=838175163]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball5" unique_id=640396658]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball5/Area2D" unique_id=1282470006]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball6" type="CharacterBody2D" parent="." unique_id=1561952616]
+z_index = 100
+position = Vector2(389, 554)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball6" unique_id=255717316]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball6" unique_id=1399358165]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball6" unique_id=431657725]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball6/Area2D" unique_id=1084460796]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball7" type="CharacterBody2D" parent="." unique_id=1727492101]
+z_index = 100
+position = Vector2(1004, 458)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball7" unique_id=1111890967]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball7" unique_id=559262401]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball7" unique_id=332898557]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball7/Area2D" unique_id=1734213373]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball8" type="CharacterBody2D" parent="." unique_id=1782063811]
+z_index = 100
+position = Vector2(1005, 14)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball8" unique_id=247236894]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball8" unique_id=375185180]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball8" unique_id=805407256]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball8/Area2D" unique_id=1411174236]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball9" type="CharacterBody2D" parent="." unique_id=525267782]
+z_index = 100
+position = Vector2(595, 475)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball9" unique_id=1552794460]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball9" unique_id=295862223]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball9" unique_id=1427642871]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball9/Area2D" unique_id=1456067450]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball10" type="CharacterBody2D" parent="." unique_id=523093066]
+z_index = 100
+position = Vector2(678, 360)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball10" unique_id=1333947029]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball10" unique_id=1417825082]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball10" unique_id=1073390201]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball10/Area2D" unique_id=5372060]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball2" type="CharacterBody2D" parent="." unique_id=467105955]
+z_index = 100
+position = Vector2(427, 249)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball2" unique_id=1656715170]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2" unique_id=253061999]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball2" unique_id=2005385628]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2/Area2D" unique_id=1810058203]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Ball3" type="CharacterBody2D" parent="." unique_id=473357263]
+z_index = 100
+position = Vector2(335, 95)
+script = ExtResource("11_dinhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball3" unique_id=1870487505]
+position = Vector2(0.1, 0.1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_dinhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball3" unique_id=1561819373]
+shape = SubResource("CircleShape2D_662ny")
+
+[node name="Area2D" type="Area2D" parent="Ball3" unique_id=621307139]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball3/Area2D" unique_id=1208327690]
+shape = SubResource("CircleShape2D_005ff")
+
+[node name="Label" type="Label" parent="." unique_id=1538024407]
+z_index = 500
+offset_left = 1326.0
+offset_top = 543.0
+offset_right = 1575.0
+offset_bottom = 566.0
+theme_override_fonts/font = ExtResource("13_kvuet")
+text = "Thank You for Playing the game!"
+
+[node name="Label2" type="Label" parent="." unique_id=1112717312]
+z_index = 500
+offset_left = -41.0
+offset_top = 550.0
+offset_right = 248.0
+offset_bottom = 595.0
+theme_override_fonts/font = ExtResource("13_kvuet")
+text = "Evade the bouncing balls and bounce 
+your way to the other side!"
+
 [connection signal="body_entered" from="Killzone/killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="Killzone/killzone2" to="." method="_on_killzone_body_entered"]
 [connection signal="body_entered" from="Killzone/Boundary_Killzone" to="." method="_on_boundary_killzone_body_entered"]
+[connection signal="body_entered" from="Killzone/EndKillzone" to="." method="_on_end_killzone_body_entered"]
+[connection signal="body_entered" from="Ball/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball4/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball5/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball6/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball7/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball8/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball9/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball10/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball2/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball3/Area2D" to="." method="_on_area_2d_body_entered"]

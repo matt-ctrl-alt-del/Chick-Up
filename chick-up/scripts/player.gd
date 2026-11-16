@@ -16,8 +16,13 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
+		if velocity.x < 0:
+			$Sprite2D.flip_h = true
+		else:
+			$Sprite2D.flip_h = false
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
 
 	velocity.y += GRAVITY_NORMAL if wind_velocity.y == 0.0 else 0.0
 	velocity += wind_velocity * 0.4

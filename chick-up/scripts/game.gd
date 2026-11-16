@@ -19,7 +19,6 @@ func _on_killzone_body_entered(body: Node2D) -> void:
 	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 
-
 func _on_boundary_killzone_body_entered(body: Node2D) -> void:
 	$CanvasLayer/TextureProgressBar.value = 0.0
 	get_tree().paused = true
@@ -27,4 +26,10 @@ func _on_boundary_killzone_body_entered(body: Node2D) -> void:
 	await get_tree().create_timer(1.0).timeout
 	$player/Camera2D.zoom = Vector2.ONE * 8
 	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	get_tree().reload_current_scene()
+
+func _on_end_killzone_body_entered(body: Node2D) -> void:
 	get_tree().reload_current_scene()
